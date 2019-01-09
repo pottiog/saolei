@@ -21,7 +21,7 @@ public class MainView extends View {
         super(context);
         this.context=context;
 
-        TILE_WIDTH=MainActivity.W/10;
+        TILE_WIDTH=MainActivity.W/12;
         mine=new Mine((MainActivity.W-COL*TILE_WIDTH)/2,(MainActivity.H-ROW*TILE_WIDTH)/2,COL,ROW,mineNum,TILE_WIDTH);
         try {
             mine.init();

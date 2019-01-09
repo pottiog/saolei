@@ -23,9 +23,11 @@ public class Mine {
     public   int tileWidth;//块宽
     private Paint textPaint;
     private Paint bmpPaint;
+    private Paint numPaint;
     private  Paint tilePaint;
     private  Paint rectPaint;
     private  Paint minePaint;
+    private Paint mPaint;
     private Random rd=new Random();
     public  int mapWidth;//绘图区宽
     public int mapHeight;//绘图区高
@@ -53,8 +55,10 @@ public class Mine {
         this.mapRow = mapRow;
         this.mineNum=mineNum;
         this.tileWidth=tileWidth;
-        mapWidth=mapCol*tileWidth;
+        mapWidth=mapCol*tileWidth;    //地图的总宽度
         mapHeight=mapRow*tileWidth;
+
+
 
         textPaint=new Paint();
         textPaint.setAntiAlias(true);
@@ -68,6 +72,10 @@ public class Mine {
         tilePaint =new Paint();
         tilePaint.setAntiAlias(true);
         tilePaint.setColor(0xff1faeff);
+
+        numPaint =new Paint();
+        numPaint.setAntiAlias(true);
+        numPaint.setColor(0xff1aaaaf);
 
         minePaint =new Paint();
         minePaint.setAntiAlias(true);
@@ -105,7 +113,7 @@ public class Mine {
      */
     public void create(Point exception)
     {
-        List<Point> allPoint=new LinkedList<Point>();
+        /*List<Point> allPoint=new LinkedList<Point>();
 
         //把所有位置加入链表
         for (int i = 0; i< mapRow; i++)//y
@@ -134,7 +142,35 @@ public class Mine {
         {
             Point p=it.next();
             tile[p.y][p.x].value=MINE;
+        }*/
+        //随机生成雷
+       Point[] leinum=new Point[10];
+	   for(int i=0;i<mineNum;i++) {
+        int m=(int)( Math.random()*mapRow);
+        int n=(int)( Math.random()*mapCol);
+        if(i>=1) {
+            for(int j=0;j<i;j++) {
+                if(leinum[j].x==m&&leinum[j].y==n)
+                {
+                    break;
+                }
+                else {
+                    leinum[i]=new Point(m,n);
+                }
+            }
+
+        }else {
+            leinum[i]=new Point(m,n);
         }
+    }
+          //为选中的雷设置为雷
+		     for(int i=0;i<mineNum;i++)
+             {
+                 tile[leinum[i].x][leinum[i].y].value=MINE;
+             }
+		/*for(int x=0;x<mineNum;x++) {
+        System.out.println(leinum[x]);
+    }*/
 
         //给地图添加数字
         for (int i = 0; i< mapRow; i++)//y
@@ -245,6 +281,8 @@ public class Mine {
                 if(t.open){
                     if(t.value>0)
                     {
+                        RectF reactF=new RectF(x+j*tileWidth,y+i*tileWidth,x+j*tileWidth+tileWidth,y+i*tileWidth+tileWidth);
+                        canvas.drawRoundRect(reactF,0,0, numPaint);
                         canvas.drawText(t.value+"",x+j*tileWidth,y+i*tileWidth+tileWidth,textPaint);
                     }
 
