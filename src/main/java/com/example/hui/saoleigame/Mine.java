@@ -150,7 +150,7 @@ public class Mine {
             tile[p.y][p.x].value=MINE;
         }*/
         //随机生成雷
-       Point[] leinum=new Point[10];
+       Point[] leinum=new Point[mineNum];
 	   for(int i=0;i<mineNum;i++) {
         int m=(int)( Math.random()*mapRow);
         int n=(int)( Math.random()*mapCol);

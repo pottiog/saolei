@@ -3,6 +3,7 @@ package com.example.hui.saoleigame;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.inputmethodservice.Keyboard;
 import android.support.v7.app.AlertDialog;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,9 +13,9 @@ public class MaintView extends View {
     private  boolean isFirst=true;//标记是否是本局第一次点击屏幕
     private Context context;
 
-    private int mineNum=20;//产生的雷的个数10
-    private   int ROW=20;//要生成的矩阵高15
-    private   int COL=12;//要生成的矩阵宽8
+    private int mineNum=25;//产生的雷的个数10
+    private   int ROW=18;//要生成的矩阵高15
+    private   int COL=13;//要生成的矩阵宽8
     /*   public int mineNum;//产生的雷的个数10
        public    int ROW;//要生成的矩阵高15
        public   int COL;//要生成的矩阵宽8*/
@@ -25,7 +26,7 @@ public class MaintView extends View {
         super(context);
         this.context=context;
 
-        TILE_WIDTH=MainActivity.W/15;
+        TILE_WIDTH=MainActivity.W/14;
       /* mineNum=Main2Activity.mineNum2;
        COL=Main2Activity.COL2;
        ROW=Main2Activity.ROW2;*/
@@ -150,4 +151,3 @@ public class MaintView extends View {
         return true;
     }
 }
-
