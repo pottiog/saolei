@@ -24,6 +24,7 @@ public class Mine {
     private Paint textPaint;
     private Paint bmpPaint;
     private Paint numPaint;
+    private  Paint flagPaint;
     private  Paint tilePaint;
     private  Paint rectPaint;
     private  Paint minePaint;
@@ -72,6 +73,11 @@ public class Mine {
         tilePaint =new Paint();
         tilePaint.setAntiAlias(true);
         tilePaint.setColor(0xff1faeff);
+
+        flagPaint =new Paint();
+        flagPaint.setAntiAlias(true);
+        flagPaint.setColor(0xfaafaeff);
+
 
         numPaint =new Paint();
         numPaint.setAntiAlias(true);
@@ -279,7 +285,7 @@ public class Mine {
             {
                 Tile t=tile[i][j];
                 if(t.open){
-                    if(t.value>0)
+                    if(t.value>0)   //数字
                     {
                         RectF reactF=new RectF(x+j*tileWidth,y+i*tileWidth,x+j*tileWidth+tileWidth,y+i*tileWidth+tileWidth);
                         canvas.drawRoundRect(reactF,0,0, numPaint);
@@ -291,7 +297,8 @@ public class Mine {
                     //标记，备用
                     if(t.flag)
                     {
-
+                        RectF reactF=new RectF(x+j*tileWidth,y+i*tileWidth,x+j*tileWidth+tileWidth,y+i*tileWidth+tileWidth);
+                        canvas.drawRoundRect(reactF,0,0, flagPaint);
                     }else
                     {
                         //画矩形方块
